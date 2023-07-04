@@ -1,7 +1,6 @@
 node_modules
 .*.swp
 .swp
-static/assets/lib
 .view/
 src/ls/prjs.ls
 static/js/prjs.js
