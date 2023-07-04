@@ -23,6 +23,18 @@ fc <<<
         }
       ]
       config: note: [ "請使用此種格式：02-27458186 或 0912-345678" ]
+  "團隊介紹":
+    type: \@makeform/textarea
+    meta:
+      desc: "請簡單介紹你的團隊"
+      term: [{opset: \length, enabled: true, op: \lte, msg: '太長了', config: val: 300, method: \simple-word}]
+      config:
+        limit: "勿超過 300 字"
+  "上傳圖片":
+    type: \@makeform/image
+    meta:
+      desc: "上傳圖片"
+      
   "計劃簡介":
     type: \@makeform/textarea
     meta:
