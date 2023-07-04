@@ -2,7 +2,4 @@ node_modules
 .*.swp
 .swp
 .view/
-src/ls/prjs.ls
-static/js/prjs.js
-static/js/prjs.min.js
 backlog
