@@ -1,0 +1,17 @@
+div
+  mixin basicinfo
+    table.table.table-bordered
+      tr
+        th.bg-light.font-weight-bold(colspan="4") 基本資料
+      tr
+        th 報名類型
+        td(ld="type")
+        th 團隊/個人名稱
+        td(ld="teamname")
+      tr
+        th 作品名稱
+        td(ld="name",colspan="3")
+
+  div(plug="custom-form"): +basicinfo
+  div(plug="custom-form-print"): +basicinfo
+  script(type="@plotdb/block"): include:lsc index.ls

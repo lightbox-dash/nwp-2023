@@ -1,0 +1,43 @@
+div
+  include @/@loadingio/bootstrap.ext/index.pug
+  include @/ldview/index.pug
+  include mixin.pug
+  style(type="text/css"): include:stylus index.styl
+  script(type="@plotdb/block")
+    include:lsc fields/index.ls
+    include:lsc index.ls
+  div(plug="form")
+    img.border-bottom.print-hide.embed-hide(path,path-src="img/index.jpg?v1",
+    width="1600",height="800",style="width:100%;height:auto",alt="brd visual")
+    .sect.embed-hide
+      h1 #[span.text-sm(t="title.year")]#[br]#[span(t="title.name")]
+      p.text-muted(t="title.date")
+    .my-4: hr
+    .sect.pt-0
+      span(t="必填項目提示.0")
+      span.mx-2 #[span.text-danger.font-weight-bold *]
+      span(t="必填項目提示.1")
+    .my-4: hr
+    .sect
+      h3.mb-5 一、基本資料
+      .row
+        .col-md: +widget("姓名")
+        .col-md: +widget("出生年")
+      .row
+        .col-md: +widget("聯絡EMAIL")
+        .col-md: +widget("聯絡電話")
+    .my-4: hr
+    .sect
+      h3.mb-5 二、其它資訊
+      +widget("計劃簡介")
+      +widget("計劃書")
+
+    .my-4: hr
+    .sect.embed-hide
+      include docs/agreement.zh.pug
+      .my-4: hr
+      +widget("同意事項")
+    .sect.embed-hide.print-hide
+      .btn.btn-primary.btn-lg.px-4(t,ld="submit") 送件
+      .my-2: .text-danger.text-sm * #[span(t) 送件後無法再修改]
+    .print-hide: +nbr(4)

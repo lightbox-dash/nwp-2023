@@ -1,0 +1,14 @@
+//- module
+mixin widget(name)
+  div(ld="block",data-name=name)
+mixin widget-inline(name)
+  .d-inline-block(ld="block",data-name=name)
+mixin fill(name)
+  span(ld="autofill-alt",data-name=name)&attributes(attributes)
+mixin fillblock(name, title)
+  .form-group
+    label= title || name
+    .form-control.bg-light: span(ld="autofill-alt",data-name=name)&attributes(attributes)
+mixin visibility(name, visible)
+  div(class=(visible?"":"d-none"),ld="visibility",data-name=name)&attributes(attributes)
+    block
