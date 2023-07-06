@@ -19,6 +19,7 @@ module.exports =
      * name: "作品圖片", required: true
      * name: "代表作品", required: true
      * name: "其它附件資料", required: true
+     * name: "是否為本國籍", required: true
     ].map (d,i) -> d <<< {idx: i}
 
     pubsub.fire \subinit, {view, items}
