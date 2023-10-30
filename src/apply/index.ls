@@ -6,8 +6,8 @@ module.exports =
     i18n:
       en:
         title:
-          year: "2023"
-          name: "GrantDash Sample Application Form"
+          year: ""
+          name: "New Wave 攝影創作獎"
           date: "Application Period: To be determined, or primarily based on announcements and regulations"
         "必填項目提示": [
           "Fields marked with"
@@ -16,8 +16,8 @@ module.exports =
         "error": "please fix error"
       "zh-TW":
         title:
-          year: "2023"
-          name: "GrantDash 徵件評選系統範例提案表"
+          year: ""
+          name: "New Wave 攝影創作獎"
           date: "徵件期間：未定，或以公告、簡章記載為主"
         "必填項目提示": [
           "標示為"
@@ -57,6 +57,7 @@ mod = ({root, ctx, t, pubsub, manager, bi}) ->
       init-render: false
       root: root
       # for any customization of your view, add it here.
+      init: dropdown: ({node}) -> new BSN.Dropdown node
       handler: {}
     @formmgr.on \change, debounce 350, ~> @optin!
     @optin!

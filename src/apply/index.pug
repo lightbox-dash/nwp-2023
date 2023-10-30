@@ -10,38 +10,89 @@ div
     img.border-bottom.print-hide.embed-hide(path,path-src="img/index.jpg?v1",
     width="1600",height="800",style="width:100%;height:auto",alt="brd visual")
     .sect.embed-hide
-      h1 #[span.text-sm(t="title.year")]#[br]#[span(t="title.name")]
+      h1 #[span(t="title.name")]
       p.text-muted(t="title.date")
-    .my-4: hr
-    .sect.pt-0
-      span(t="必填項目提示.0")
-      span.mx-2 #[span.text-danger.font-weight-bold *]
-      span(t="必填項目提示.1")
-    .my-4: hr
+      .mt-4
+        span(t="必填項目提示.0")
+        span.mx-2 #[span.text-danger.font-weight-bold *]
+        span(t="必填項目提示.1")
     .sect
-      h3.mb-5 一、基本資料
-      .row
-        .col-md: +widget("姓名")
-        .col-md: +widget("出生年")
-      .row
-        .col-md: +widget("聯絡EMAIL")
-        .col-md: +widget("聯絡電話")
-    .sect
-      +widget("團隊介紹")
-      +widget("上傳圖片")
+      h3#sect-1.mb-5 一、資格確認
+      h4 參賽資格
+      ul.li-tweak
+        li 若有任何一項不符合，即無法報名本獎項；
+        li 若有疑問，請填寫此表單，我們將儘速協助確認，謝謝！
+        li 若因未確認參賽資格／填寫不實資料，而喪失參賽資格，報名費用將不予退還。
+      .bg-white.shadow-sm.rounded: +widget("參賽資格")
+      h4.pt-4 作品規範
+      ul.li-tweak
+        li 每人／每團體至多可以投一組作品參賽
+        li 參賽作品可為進行中，或已完成之作品
+        li 參賽作品須未曾獲得國內外之各類攝影獎項
+        li 參賽作品須為五年內之創作（ 2019 至 2023 年）
+        li 參賽作品不得有抄襲、重製、冒名頂替、損害他人著作權益，或違反本簡章規定之情事。倘經評審委員會之半數以上委員判定有上述情事，參賽者除自負法律與賠償責任外，主辦單位得逕取消資格並公告之，三年內不得參賽，已發給之獎金、獎狀、入選證書與紀念物皆予以收回
+      +widget("作品規範")
+      h4.pt-4 參賽需知
+      ul.li-tweak
+        li 報名截止日後，所有參賽作品將去識別的公開展示，開放公眾於本網站閱覽
+        li 報名者應就其報名資料真實性負責。若評審過程中發現不實情事，將取消參賽及獲獎資格
+        li 入選以上（含入選）作者授權主辦單位為研究、推廣美術等非營利目的，攝影、錄製相關影音成果，不受時間、地域、次數及方式之限制，包括︰公開上映權、公開口述權、公開演出權、公開傳輸權、公開播送權、散布權、重製權等權利
+        li 入選以上（含入選）作品著作財產權需因應主辦單位展覽展示、出版及推廣等需求，授權主辦單位執行，包括︰公開展示權、編輯權、散布權、公開上映權、公開口述權、公開演出權、公開傳輸權、公開播送權、相關文宣品發行及販售
+        li 參賽者於報名表上所填寫之創作理念，同意提供主辦單位及本活動相關之印刷、網站及其它公共使用。倘參賽者所提供之創作理念有引用他人文字，請自行於送件前取得相關授權同意，若事後涉及相關法律爭議，由參賽者自行負責
+        li 入選以上（含入選）作者同意展覽現場開放大眾攝影
+        li 本簡章如有未盡事宜，得由主辦單位修正並隨時公告於網站，主辦單位保有補充解釋之權
+      +widget("參賽需知")
 
-    .my-4: hr
     .sect
-      h3.mb-5 二、其它資訊
-      +widget("計劃簡介")
-      +widget("計劃書")
+      h3#sect-2.mb-5 二、基本資料
+      ul.li-tweak
+        li 若為團體報名者，請推派一位代表填寫
+        li 下列報名資料，僅供主辦單位使用於本獎項之行政事宜，以及了解投件者群像，請放心填寫
+      .row
+        .col-md: +widget("真實姓名")
+        .col-md: +widget("團體名稱")
+      .row
+        .col-md: +widget("居住地")
+        .col-md: +widget("年齡")
+      +widget("性別")
+      +widget("國籍")
+      +widget("電子信箱")
+      +widget("聯絡電話")
 
-    .my-4: hr
-    .sect.embed-hide
-      include docs/agreement.zh.pug
-      .my-4: hr
-      +widget("同意事項")
-    .sect.embed-hide.print-hide
+    .sect
+      h3#sect-3.mb-5 三、作品簡介
+      +widget("作品名稱")
+      +widget("作品說明")
+      +widget("資訊揭露：影像內容是否使用生成式 AI 技術？")
+
+    .sect
+      h3#sect-4.mb-5 四、作品上傳
+      +widget("作品上傳")
+
+    .sect
+      h3#sect-5.mb-5 五、個人／團體簡介
+      +widget("個人／團體自述")
+      +widget("個人／團體參展經歷")
+
+    .sect
+      h3#sect-6.mb-5 六、報名費繳交
+      +widget("是否具學生身分？")
+      +widget("學生證正面")
+
+    .sect.embed-hide.print-hide.bg-white
       .btn.btn-primary.btn-lg.px-4(t,ld="submit") 送件
       .my-2: .text-danger.text-sm * #[span(t) 送件後無法再修改]
     .print-hide: +nbr(4)
+  div(plug="toc")
+    .dropdown
+      .btn.btn-sm.btn-block.btn-outline-secondary.dropdown-toggle(ld="dropdown",data-toggle="dropdown")
+        span(t) 目錄
+      .dropdown-menu.dropdown-menu-right.shadow-sm
+        a.dropdown-item.clickable(href="#sect-1") 1. #[span(t) 資格確認]
+        a.dropdown-item.clickable(href="#sect-2") 2. #[span(t) 基本資料]
+        a.dropdown-item.clickable(href="#sect-3") 3. #[span(t) 作品簡介]
+        a.dropdown-item.clickable(href="#sect-4") 4. #[span(t) 作品上傳]
+        a.dropdown-item.clickable(href="#sect-5") 5. #[span(t) 個人／團體簡介]
+        a.dropdown-item.clickable(href="#sect-6") 6. #[span(t) 報名費繳交]
+        //-a.dropdown-item.clickable(href="#sect-5") 5. #[span(t) 條款與同意書]
+    hr

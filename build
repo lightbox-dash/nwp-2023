@@ -13,8 +13,7 @@ echo "qualification/user.pug ..."
 ./node_modules/.bin/srcbuild-pug src/qualification/user.pug > dist/qualification/user.html
 
 echo "copy image files"
-cp -f src/apply/img/*.svg dist/apply/img/
-cp -f src/apply/img/*.jpg dist/apply/img/
+cp -f src/apply/img/* dist/apply/img/
 echo "copy dist into static folder..."
 rm -rf web/static/assets/lib/block/main/
 mkdir -p web/static/assets/lib/block/main/
