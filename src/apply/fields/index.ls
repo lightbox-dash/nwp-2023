@@ -107,9 +107,14 @@ fc["作品上傳"] =
   meta:
     is-required: true
     term: [
-      # TODO
+    * opset: \file, enabled: true, op: \count-range, msg: '請上傳 15 - 25 張影像'
+      config: min: 15, max: 25
+    * opset: \file, enabled: true, op: \extension, msg: '請上傳 jpg 檔'
+      config: str: "jpg,jpeg"
+    # TODO add limitation of 3000 pixel
     ]
     config:
+      multiple: true
       note: [
         "請上傳 15 - 25 張影像，將視為一組作品"
         "影像須為 jpg 檔，長邊為 3,000 像素"
@@ -164,3 +169,5 @@ fc["學生證正面"] =
     title: "學生證正面照片上傳"
     desc: "具學生身分者，請上傳學生證之正面照片"
     is-required: false
+
+# TODO add payment widget
