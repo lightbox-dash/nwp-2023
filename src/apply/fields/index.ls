@@ -109,9 +109,10 @@ fc["作品上傳"] =
     term: [
     * opset: \file, enabled: true, op: \count-range, msg: '請上傳 15 - 25 張影像'
       config: min: 15, max: 25
+    * opset: \image, enabled: true, op: \long-side, msg: '圖片長邊需為 3000 像素'
+      config: min: 3000, max: 3000
     * opset: \file, enabled: true, op: \extension, msg: '請上傳 jpg 檔'
       config: str: "jpg,jpeg"
-    # TODO add limitation of 3000 pixel
     ]
     config:
       multiple: true
