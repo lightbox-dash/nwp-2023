@@ -56,6 +56,7 @@ fc["年齡"] =
 fc["國籍"] =
   type: \@makeform/radio
   meta:
+    is-required: true
     config: 
       values: <[具中華民國國籍 外國籍，具中華民國有效居留證]>
 
@@ -93,7 +94,7 @@ fc["作品名稱"] =
 fc["作品簡介"] =
   type: \@makeform/textarea
   meta:
-    meta: is-required: true
+    is-required: true
     term: [{
       opset: \length, enabled: true, op: \lte, msg: '長度不符'
       config: val: 500, method: \simple-word
@@ -103,6 +104,7 @@ fc["作品簡介"] =
 fc["創作媒材揭露：影像內容是否源自生成式 AI 工具？"] =
   type: \@makeform/radio
   meta:
+    is-required: true
     config:
       values: <[是 否]>
       note: ["不影響參加資格，惟請照實填寫。"]
@@ -157,7 +159,7 @@ fc["自我介紹"] =
 fc["參展經歷"] =
   type: \@makeform/textarea
   meta:
-    is-required: false
+    is-required: true
     term: [{
       opset: \length, enabled: true, op: \lte, msg: '長度不符'
       config: val: 500, method: \simple-word
