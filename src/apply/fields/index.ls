@@ -196,4 +196,11 @@ fc["學生證正面"] =
     title: "學生證正面照片上傳"
     note: ["具學生身分者，請上傳學生證之正面照片。"]
 
-# TODO add payment widget
+fc["報名費"] =
+  type: {name: \@grantdash/dart, path: \block/widget/payment}
+  meta:
+    is-required: true
+    config:
+      target: "報名費"
+      amount: "1000"
+      unit: \新台幣
