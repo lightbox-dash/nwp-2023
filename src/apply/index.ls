@@ -44,6 +44,7 @@ mod = ({root, ctx, t, pubsub, manager, bi}) ->
     fields: fc
   init: (base) ->
     @formmgr = base.formmgr
+    @{}_visibility
     @ldcv = {}
     # for any additional i18n data,
     # store it in `i18n-ext = {en: ..., zh: ...}` object
@@ -58,7 +59,10 @@ mod = ({root, ctx, t, pubsub, manager, bi}) ->
       root: root
       # for any customization of your view, add it here.
       init: dropdown: ({node}) -> new BSN.Dropdown node
-      handler: {}
+      handler:
+        visibility: ({node}) ~>
+          name = node.getAttribute \data-name
+          node.classList.toggle \d-none, (@_visibility[name]? and !@_visibility[name])
     @formmgr.on \change, debounce 350, ~> @optin!
     @optin!
 
@@ -93,7 +97,7 @@ mod = ({root, ctx, t, pubsub, manager, bi}) ->
       content = if Array.isArray(content) => content else [content]
       active = !!content.filter((c) -> if Array.isArray(values) => (c in values) else (c == values)).length
       for tgt in targets =>
-        if visible? => @{}_visibility[tgt] = if visible => active else !active
+        if visible? => @_visibility[tgt] = if visible => active else !active
         if !(fc[tgt] and (o = fc[tgt].itf)) => continue
         c = o.serialize!
         if disabled? => c.disabled = if disabled => active else !active
