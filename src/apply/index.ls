@@ -94,7 +94,7 @@ mod = ({root, ctx, t, pubsub, manager, bi}) ->
       active = !!content.filter((c) -> if Array.isArray(values) => (c in values) else (c == values)).length
       for tgt in targets =>
         if visible? => @{}_visibility[tgt] = if visible => active else !active
-        if !(fields[tgt] and (o = fields[tgt].itf)) => continue
+        if !(fc[tgt] and (o = fc[tgt].itf)) => continue
         c = o.serialize!
         if disabled? => c.disabled = if disabled => active else !active
         if is-required? => c.is-required = if is-required => active else !active
