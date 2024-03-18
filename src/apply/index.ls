@@ -87,21 +87,22 @@ mod = ({root, ctx, t, pubsub, manager, bi}) ->
     */
 
     # targets is required/visible(based on `is-required` and `visible` field) only if name = val
-    dependency = ({source, values, targets, is-required, visible}) ~>
+    dependency = ({source, values, targets, is-required, disabled, visible}) ~>
       itf = fc[source].itf
       content = itf.content!
-      active = if Array.isArray(values) => (content in values) else (content == values)
-      required = if !is-required => !active else active
-      visible = if !visible => !active else active
+      content = if Array.isArray(content) => content else [content]
+      active = !!content.filter((c) -> if Array.isArray(values) => (c in values) else (c == values)).length
       for tgt in targets =>
-        o = fc[tgt].itf
+        if visible? => @{}_visibility[tgt] = if visible => active else !active
+        if !(fields[tgt] and (o = fields[tgt].itf)) => continue
         c = o.serialize!
-        c.is-required = active
+        if disabled? => c.disabled = if disabled => active else !active
+        if is-required? => c.is-required = if is-required => active else !active
         o.deserialize c
-        @{}_visibility[tgt] = visible
+
     plugin-run = (k, v, p = {}) ->
       if p.type == \dependency =>
-        cfg = p.{}config{values, is-required, visible}
+        cfg = p.{}config{values, is-required, visible, disabled}
         cfg <<< if p.config.source => {source: p.config.source, targets: [k]}
         else {source: k, targets: p.config.targets}
         dependency cfg

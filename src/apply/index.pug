@@ -85,7 +85,8 @@ div
       h3#sect-6.mb-5 六、報名費繳交
       +widget("是否具學生身分？")
       +widget("學生證正面")
-      +widget("報名費")
+      +visibility("報名費-一般"): +widget("報名費-一般")
+      +visibility("報名費-學生"): +widget("報名費-學生")
 
     .sect.embed-hide.print-hide.bg-white
       .btn.btn-primary.btn-lg.px-4(t,ld="submit") 送件

@@ -180,7 +180,15 @@ fc["是否具學生身分？"] =
         values: ["是"]
         is-required: true
         visible: true
-        targets: <[學生證正面]>
+        disabled: false
+        targets: <[學生證正面 報名費-學生]>
+    * type: \dependency
+      config:
+        values: ["否"]
+        is-required: true
+        visible: true
+        disabled: false
+        targets: <[報名費-一般]>
     ]
     config:
       values: <[是 否]>
@@ -193,14 +201,25 @@ fc["學生證正面"] =
   type: \@makeform/upload
   meta:
     is-required: false
+    disabled: true
     title: "學生證正面照片上傳"
     note: ["具學生身分者，請上傳學生證之正面照片。"]
 
-fc["報名費"] =
+fc["報名費-一般"] =
   type: {name: \@grantdash/dart, path: \block/widget/payment}
   meta:
     is-required: true
     config:
       target: "報名費"
       amount: "1000"
+      unit: \新台幣
+
+fc["報名費-學生"] =
+  type: {name: \@grantdash/dart, path: \block/widget/payment}
+  meta:
+    is-required: false
+    disabled: true
+    config:
+      target: "報名費"
+      amount: "500"
       unit: \新台幣
