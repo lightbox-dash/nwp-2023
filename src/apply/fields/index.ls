@@ -208,6 +208,7 @@ fc["學生證正面"] =
 fc["報名費-一般"] =
   type: {name: \@grantdash/dart, path: \block/widget/payment}
   meta:
+    title: "報名費 (一般身份)"
     is-required: true
     config:
       target: "報名費"
@@ -217,6 +218,7 @@ fc["報名費-一般"] =
 fc["報名費-學生"] =
   type: {name: \@grantdash/dart, path: \block/widget/payment}
   meta:
+    title: "報名費 (學生身份)"
     is-required: false
     disabled: true
     config:
