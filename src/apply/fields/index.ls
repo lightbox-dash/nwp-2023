@@ -211,7 +211,7 @@ fc["報名費-一般"] =
     title: "報名費 (一般身份)"
     is-required: true
     config:
-      target: "報名費"
+      target: "報名費-一般"
       amount: "1000"
       unit: \新台幣
 
@@ -222,6 +222,6 @@ fc["報名費-學生"] =
     is-required: false
     disabled: true
     config:
-      target: "報名費"
+      target: "報名費-學生"
       amount: "500"
       unit: \新台幣
