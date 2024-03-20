@@ -1,13 +1,13 @@
 {
   "author": "zbryikt",
-  "name": "@grantdash/prj.tdb.boilerplate",
+  "name": "@lightbox-dash/nwp-2024",
   "private": true,
-  "description": "grantdash prj.tdb sample brd template",
+  "description": "nwp-2024 brd files",
   "version": "1.0.0",
-  "homepage": "https://github.com/grantdash/prj.tdb",
+  "homepage": "https://github.com/lightbox-dash/nwp-2024",
   "repository": {
     "type": "git",
-    "url": "https://github.com/grantdash/prj.tdb"
+    "url": "https://github.com/lightbox-dash/nwp-2024"
   },
   "engines": {
     "node": ">=0.12.6",
