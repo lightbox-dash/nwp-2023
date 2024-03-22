@@ -99,7 +99,7 @@ fc["作品簡介"] =
       opset: \length, enabled: true, op: \lte, msg: '長度不符'
       config: val: 500, method: \simple-word
     }]
-    config: limitation: "500 字以內"
+    config: note: ["500 字以內"]
 
 fc["創作媒材揭露：影像內容是否源自生成式 AI 工具？"] =
   type: \@makeform/radio
@@ -125,7 +125,7 @@ fc["作品上傳"] =
       multiple: true
       note: [
         "請上傳 15 - 25 張作品圖檔，將視為一組作品。"
-        "影像須為 jpg 檔，長邊為 3,000 像素。"
+        "影像須為 jpg 檔，長邊須為 3,000 像素。"
       ]
 
 fc["上傳作品之展呈示意圖"] =
@@ -141,8 +141,10 @@ fc["上傳作品之展呈示意圖"] =
     config:
       multiple: true
       note: [
-        "非必填。至多以 3 張圖為限。請將作品呈現於寬 3 公尺、高 2.5 公尺的平面上。"
-        "影像須為 jpg 檔，長邊為 3,000 像素。"
+        "非必填。"
+        "請以示意圖（至多3張）呈現作品的展示規劃。"
+        "展示牆面尺寸：寬 3 公尺、高 2.5 公尺。"
+        "影像須為 jpg 檔，長邊須為 3,000 像素。"
       ]
 
 fc["自我介紹"] =
@@ -153,7 +155,7 @@ fc["自我介紹"] =
       opset: \length, enabled: true, op: \lte, msg: '長度不符'
       config: val: 500, method: \simple-word
     }]
-    config: limitation: "500 字以內"
+    config: note: ["500 字以內"]
 
 
 fc["參展經歷"] =
