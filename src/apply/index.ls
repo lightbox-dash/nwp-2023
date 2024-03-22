@@ -33,8 +33,8 @@ mod = ({root, ctx, t, pubsub, manager, bi}) ->
   render: ->
     # `render` is called when host decides to re-render.
     # when anything that may need a re-render, it should be called here.
-    @_ldview.render!
     @optin!
+    @_ldview.render!
   info:
     # subset: field identifier defined in project config,
     #   for prj data to store in prj data object.
