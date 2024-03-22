@@ -117,6 +117,6 @@ mod = ({root, ctx, t, pubsub, manager, bi}) ->
   brief: ->
     # this fields are used for basic prj information used by backend.
     # e.g., `name` and `description` are stored directly in db column for quick access of prj basic info.
-    name: @formmgr.content("姓名")
-    description: @formmgr.content("計劃簡介")
+    name: @formmgr.content("作品名稱")
+    description: @formmgr.content("作品簡介")
     thumb: null # thumbnail image url
