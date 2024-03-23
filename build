@@ -12,6 +12,10 @@ $bin/srcbuild-pug src/apply/index.pug > dist/apply/index.html
 echo "qualification/user.pug ..."
 ./node_modules/.bin/srcbuild-pug src/qualification/user.pug > dist/qualification/user.html
 
+# building customized @makeform/image
+echo "widgets/image/index.pug ..."
+./node_modules/.bin/srcbuild-pug src/apply/widgets/image/index.pug -o dist/apply/widgets/image/index.html
+
 echo "copy image files"
 cp -f src/apply/img/* dist/apply/img/
 echo "copy dist into static folder..."

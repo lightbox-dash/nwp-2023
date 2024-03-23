@@ -110,7 +110,7 @@ fc["創作媒材揭露：影像內容是否源自生成式 AI 工具？"] =
       note: ["不影響參加資格，惟請照實填寫。"]
 
 fc["作品上傳"] =
-  type: \@makeform/image
+  type: {ns: \template/nwp-2024, name: \block, path: \apply/widgets/image/index.html}
   meta:
     is-required: true
     term: [
@@ -129,7 +129,7 @@ fc["作品上傳"] =
       ]
 
 fc["上傳作品之展呈示意圖"] =
-  type: \@makeform/image
+  type: {ns: \template/nwp-2024, name: \block, path: \apply/widgets/image/index.html}
   meta:
     is-required: false
     term: [
