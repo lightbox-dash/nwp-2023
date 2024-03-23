@@ -133,10 +133,12 @@ fc["上傳作品之展呈示意圖"] =
   meta:
     is-required: false
     term: [
+    * opset: \file, enabled: true, op: \count-range, msg: '請上傳至多3張呈現作品的展示規劃'
+      config: min: 0, max: 3
     * opset: \image, enabled: true, op: \long-side, msg: '長邊為 3,000 像素。'
-      config: min: 3000, max: 3000
+      config: min: 2999, max: 3001
     * opset: \file, enabled: true, op: \extension, msg: '影像須為 jpg 檔'
-      config: str: "jpg, jpeg"
+      config: str: "jpg,jpeg"
     ]
     config:
       multiple: true
