@@ -119,4 +119,4 @@ mod = ({root, ctx, t, pubsub, manager, bi}) ->
     # e.g., `name` and `description` are stored directly in db column for quick access of prj basic info.
     name: @formmgr.content("作品名稱")
     description: @formmgr.content("作品簡介")
-    thumb: null # thumbnail image url
+    thumb: ((@formmgr.content("作品上傳") or []).0 or {}).url
