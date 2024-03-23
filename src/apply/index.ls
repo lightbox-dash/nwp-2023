@@ -8,7 +8,7 @@ module.exports =
         title:
           year: ""
           name: "New Wave 攝影創作獎"
-          date: "Application Period: To be determined, or primarily based on announcements and regulations"
+          date: "Application Period: March 25, 2024, to April 30, 2024 (until 23:59, UTC+8)."
         "必填項目提示": [
           "Fields marked with"
           "are required"
