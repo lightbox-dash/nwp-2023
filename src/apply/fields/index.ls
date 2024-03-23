@@ -117,9 +117,9 @@ fc["作品上傳"] =
     * opset: \file, enabled: true, op: \count-range, msg: '請上傳 15 - 25 張作品圖檔，將視為一組作品。'
       config: min: 15, max: 25
     * opset: \image, enabled: true, op: \long-side, msg: '長邊為 3,000 像素。'
-      config: min: 3000, max: 3000
+      config: min: 2999, max: 3001
     * opset: \file, enabled: true, op: \extension, msg: '影像須為 jpg 檔'
-      config: str: "jpg, jpeg"
+      config: str: "jpg,jpeg"
     ]
     config:
       multiple: true
