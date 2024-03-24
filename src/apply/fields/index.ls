@@ -185,14 +185,7 @@ fc["是否具學生身分？"] =
         is-required: true
         visible: true
         disabled: false
-        targets: <[學生證正面 報名費-學生]>
-    * type: \dependency
-      config:
-        values: ["否"]
-        is-required: true
-        visible: true
-        disabled: false
-        targets: <[報名費-一般]>
+        targets: <[學生證正面]>
     ]
     config:
       values: <[是 否]>
@@ -229,3 +222,26 @@ fc["報名費-學生"] =
       target: "報名費-學生"
       amount: "500"
       unit: \新台幣
+
+fc["繳費方式"] =
+  type: \@makeform/radio
+  meta:
+    is-required: true
+    config: values: <[線上刷卡 ATM轉帳]>
+    plugin: [
+    * type: \dependency
+      config:
+        values: ["ATM轉帳"]
+        visible: true
+        targets: <[ATM轉帳]>
+    ]
+
+fc["帳號末五碼"] =
+  type: \@makeform/input
+  meta:
+    is-required: false
+    disabled: true
+    term: [{
+      opset: \string, enabled: true, op: \regex, msg: "格式不符",
+      config: rule: "^\\d{5}$"
+    }]

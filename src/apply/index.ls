@@ -114,6 +114,26 @@ mod = ({root, ctx, t, pubsub, manager, bi}) ->
     for k,v of fc =>
       ((v.meta or {}).plugin or []).map -> plugin-run(k, v, it)
 
+    # 透過「繳費方式」與「是否具學生身分？」來決定「帳號末五碼」、「報名費-一般」、「報名費-學生」的狀態
+    method = fc["繳費方式"].itf.content!
+    role = fc["是否具學生身分？"].itf.content!
+    [
+      <[帳號末五碼 ATM轉帳]>
+      <[報名費-一般 線上刷卡 否]>
+      <[報名費-學生 線上刷卡 是]>
+    ].map (list) ~>
+      widget = fc[list.0].itf
+      cfg = widget.serialize!
+      active = if method == list.1 =>
+        # 元件需要的繳費方式與目前的值相同. 接著要看身份.
+        # 若身份有定義, 則必須與身份相符; 若無定義, 代表不需看身份
+        if !list.2? or list.2 == role => true else false
+      else false # 元件需要的繳費方式與目前的值不同, 自然不需要填寫
+      cfg <<< disabled: !active, is-required: active
+      @_visibility[list.0] = active
+      widget.deserialize cfg
+
+
   brief: ->
     # this fields are used for basic prj information used by backend.
     # e.g., `name` and `description` are stored directly in db column for quick access of prj basic info.
