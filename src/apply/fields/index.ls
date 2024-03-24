@@ -227,16 +227,16 @@ fc["繳費方式"] =
   type: \@makeform/radio
   meta:
     is-required: true
-    config: values: <[線上刷卡 ATM轉帳]>
+    config: values: <[線上刷卡 其他付款方式]>
     plugin: [
     * type: \dependency
       config:
-        values: ["ATM轉帳"]
+        values: ["其他付款方式"]
         visible: true
-        targets: <[ATM轉帳]>
+        targets: <[其他付款方式]>
     ]
 
-fc["帳號末五碼"] =
+fc["活動票號"] =
   type: \@makeform/input
   meta:
     is-required: false

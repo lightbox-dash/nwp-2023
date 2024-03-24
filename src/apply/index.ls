@@ -114,11 +114,11 @@ mod = ({root, ctx, t, pubsub, manager, bi}) ->
     for k,v of fc =>
       ((v.meta or {}).plugin or []).map -> plugin-run(k, v, it)
 
-    # 透過「繳費方式」與「是否具學生身分？」來決定「帳號末五碼」、「報名費-一般」、「報名費-學生」的狀態
+    # 透過「繳費方式」與「是否具學生身分？」來決定「活動票號」、「報名費-一般」、「報名費-學生」的狀態
     method = fc["繳費方式"].itf.content!
     role = fc["是否具學生身分？"].itf.content!
     [
-      <[帳號末五碼 ATM轉帳]>
+      <[活動票號 其他付款方式]>
       <[報名費-一般 線上刷卡 否]>
       <[報名費-學生 線上刷卡 是]>
     ].map (list) ~>
