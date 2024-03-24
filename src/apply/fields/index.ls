@@ -242,6 +242,6 @@ fc["活動票號"] =
     is-required: false
     disabled: true
     term: [{
-      opset: \string, enabled: true, op: \regex, msg: "格式不符",
-      config: rule: "^\\d{5}$"
+      opset: \length, enabled: true, op: \lte, msg: '長度不符'
+      config: val: 13, method: \simple-word
     }]
