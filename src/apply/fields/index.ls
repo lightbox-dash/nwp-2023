@@ -209,6 +209,8 @@ fc["報名費-一般"] =
     is-required: true
     config:
       target: "報名費-一般"
+      desc: "攝影創作獎報名費"
+      code: "攝影創作獎報名費-一般身份"
       amount: "1000"
       unit: \新台幣
 
@@ -220,6 +222,8 @@ fc["報名費-學生"] =
     disabled: true
     config:
       target: "報名費-學生"
+      desc: "攝影創作獎報名費"
+      code: "攝影創作獎報名費-學生身份"
       amount: "500"
       unit: \新台幣
 
