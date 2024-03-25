@@ -231,21 +231,25 @@ fc["繳費方式"] =
   type: \@makeform/radio
   meta:
     is-required: true
-    config: values: <[線上刷卡 ATM轉帳]>
+    config: values: <[線上刷卡 其他付款方式]>
     plugin: [
     * type: \dependency
       config:
-        values: ["ATM轉帳"]
+        values: ["其他付款方式"]
         visible: true
-        targets: <[ATM轉帳]>
+        targets: <[其他付款方式]>
     ]
 
-fc["帳號末五碼"] =
+fc["票號或訂單編號"] =
   type: \@makeform/input
   meta:
     is-required: false
     disabled: true
     term: [{
       opset: \string, enabled: true, op: \regex, msg: "格式不符",
-      config: rule: "^\\d{5}$"
+      config: rule: "^[a-zA-Z0-9]{13}$"
     }]
+    config:
+      note: [
+        '應為 13 碼英數組合'
+      ]
