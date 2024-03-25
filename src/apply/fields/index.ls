@@ -236,12 +236,16 @@ fc["繳費方式"] =
         targets: <[其他付款方式]>
     ]
 
-fc["活動票號"] =
+fc["票號或訂單編號"] =
   type: \@makeform/input
   meta:
     is-required: false
     disabled: true
     term: [{
       opset: \string, enabled: true, op: \regex, msg: "格式不符",
-      config: rule: "^[a-zA-Z0-9]{1,13}$"
+      config: rule: "^[a-zA-Z0-9]{13}$"
     }]
+    config:
+      note: [
+        '應為 13 碼英數組合'
+      ]
