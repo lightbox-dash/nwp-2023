@@ -177,6 +177,7 @@ fc["參展經歷"] =
 fc["是否具學生身分？"] =
   type: \@makeform/radio
   meta:
+    title: "是否為學生、身心礙障者？"
     is-required: true
     plugin: [
     * type: \dependency
@@ -199,13 +200,13 @@ fc["學生證正面"] =
   meta:
     is-required: false
     disabled: true
-    title: "學生證正面照片上傳"
-    note: ["具學生身分者，請上傳學生證之正面照片。"]
+    title: "上傳學生證、身心障礙證明之正面照"
+    note: ["具學生證、身心障礙證明者，請上傳證件之正面照片。"]
 
 fc["報名費-一般"] =
   type: {name: \@grantdash/dart, path: \block/widget/payment}
   meta:
-    title: "報名費 (一般身份)"
+    title: "個人、團體參加者"
     is-required: true
     config:
       target: "報名費-一般"
@@ -217,7 +218,7 @@ fc["報名費-一般"] =
 fc["報名費-學生"] =
   type: {name: \@grantdash/dart, path: \block/widget/payment}
   meta:
-    title: "報名費 (學生身份)"
+    title: "學生、身心障礙者"
     is-required: false
     disabled: true
     config:
