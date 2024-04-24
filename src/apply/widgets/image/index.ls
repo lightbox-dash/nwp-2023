@@ -1,6 +1,6 @@
 module.exports =
   pkg:
-    name: "@makeform/image", extend: {name: '@makeform/upload'}
+    name: "@makeform/image", extend: {name: 'apply/widgets/upload/index.html'}
     dependencies: [
       {url: "https://cdn.jsdelivr.net/npm/imgtype@0.0.1/index.min.js"}
     ]
