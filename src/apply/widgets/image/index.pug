@@ -9,6 +9,10 @@ div
         i.text-lg.i-close.d-block.clickable(data-ldcv-set="",
         style="background:#fff;padding:.5em;border-radius:.25em")
       a.inner.d-block(data-ldcv-set="",ld="container")
+      .position-absolute(style="right:1em;top:46%", ld="next-img")
+        button.btn.btn-light.clickable: i.i-chevron-right
+      .position-absolute(style="left:1em;top:46%", ld="prev-img")
+        button.btn.btn-light.clickable: i.i-chevron-left
     .row
       .col-6.col-lg-4.p-2(ld-each="image")
         .w-100.embed-responsive.embed-responsive-1by1

@@ -30,18 +30,43 @@ module.exports =
         image:
           list: ({ctx}) ->
             file = ctx.file
+            lc.filelist = file
             if Array.isArray(file) => file else if file => [file] else []
           view:
-            action: click: "@": ({ctx}) ->
-              lc.viewer.innerHTML = ""
-              img = new Image!
-              img.src = ctx.url
-              lc.viewer.appendChild img
-              lc.open.setAttribute \href, ctx.url
-              lc.ldcv.toggle!
+            action: click:
+              "@": ({ctx}) ->
+                lc.current = ctx.url
+                lc.viewer.innerHTML = ""
+                img = new Image!
+                img.src = ctx.url
+                lc.viewer.appendChild img
+                lc.open.setAttribute \href, ctx.url
+                lc.ldcv.toggle!
 
             handler:
               image: ({node,ctx}) -> node.setAttribute \src, ctx.url
+      action: click:
+        "next-img": ~>
+          idx = lc.filelist.findIndex (f) -> f.url is lc.current
+          nextIdx = (idx + 1)%lc.filelist.length
+          lc.current = lc.filelist[nextIdx].url
+          lc.viewer.innerHTML = ""
+          img = new Image!
+          img.src = lc.current
+          lc.viewer.appendChild img
+          lc.open.setAttribute \href, lc.current
+        "prev-img": ~>
+          idx = lc.filelist.findIndex (f) -> f.url is lc.current
+          nextIdx = (idx - 1 + lc.filelist.length)%lc.filelist.length
+          lc.current = lc.filelist[nextIdx].url
+          lc.viewer.innerHTML = ""
+          img = new Image!
+          img.src = lc.current
+          lc.viewer.appendChild img
+          lc.open.setAttribute \href, lc.current
+
+
+      
 
     detail = (v) ->
       ps = v.map (f) ->
