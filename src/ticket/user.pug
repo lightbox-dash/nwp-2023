@@ -18,7 +18,7 @@ div: .d-flex.flex-grow-1.w-100.h-100(plug="content",style="overflow-x:scroll")
       li(ld="used-pt-ratio",data-name="linear") 一票 = 1點、兩票 = 2點、三票 = 3點，以此類推至 #[span(ld="point-quota")] 點被扣完為止。
       li 點數不須全部用完。
     hr
-    .text-right: .btn.btn-primary 關閉
+    .text-right: .btn.btn-primary(data-ldcv-set="") 關閉
   .ldcv.autogap.scroll(ld="ldcv",data-name="point-reset-confirm"): .w-480.rwd.base: .inner
     .mb-4 這會重設您所有的投票數，您將會需要重新投票。您確定要繼續嗎？
     .d-flex.justify-content-between.g-4
