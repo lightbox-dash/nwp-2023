@@ -1,0 +1,122 @@
+include @/@loadingio/bootstrap.ext/index.pug
+include @/ldview/index.pug
+div: .d-flex.flex-grow-1.w-100.h-100(plug="content",style="overflow-x:scroll")
+  style(type="text/css"): include:stylus user/index.styl
+  //include:lsc ../common.ls
+  //include:lsc admin.ls
+  script(type="@plotdb/block")
+    :lsc submod = {}
+    include:lsc user/project.ls
+    include:lsc user/index.ls
+  .ldcv.autogap.scroll(ld="ldcv",data-name="rule-description"): .w-480.rwd.base: .inner
+    h3 投票規則
+    hr
+    ul.pl-3
+      li 計票方式採用「#[span.font-weight-bold(ld="pt-ratio-name") 平方投票法]」。
+      li 每位評審都有相同點數 #[span.font-weight-bold(ld="point-quota")] 點。
+      li.d-none(ld="used-pt-ratio",data-name="quad") 一票 = 1點、兩票 = 4點、三票 = 9點，以此類推至 #[span(ld="point-quota")] 點被扣完為止。
+      li(ld="used-pt-ratio",data-name="linear") 一票 = 1點、兩票 = 2點、三票 = 3點，以此類推至 #[span(ld="point-quota")] 點被扣完為止。
+      li 點數不須全部用完。
+    hr
+    .text-right: .btn.btn-primary 關閉
+  .ldcv.autogap.scroll(ld="ldcv",data-name="point-reset-confirm"): .w-480.rwd.base: .inner
+    .mb-4 這會重設您所有的投票數，您將會需要重新投票。您確定要繼續嗎？
+    .d-flex.justify-content-between.g-4
+      .btn.flex-grow-1.btn-outline-secondary(data-ldcv-set="") 取消
+      .btn.flex-grow-1.btn-danger(data-ldcv-set="ok") 確定
+  .d-flex.flex-column(style="flex:1 1 50%")
+    .flex-grow-1.bg-white.border-top.border-bottom.mt-1(style="overflow:scroll")
+      .w-100
+        .p-2.d-flex.align-items-center.border-bottom.border-secondary.bg-light.sticky.shadow-sm._flex-md-wrap.z-float(
+        style="top:0")
+          .d-flex.align-items-center.flex-grow-1._row_g1
+            .mr-2.text-center.px-2.clickable._row_g1_h(t,ld="sort-custom",data-name="idx",style="width:5em") 編號
+            .mr-2.clickable.text-center._row_g1_h(ld="show-group",style="width:4em") #[span(t) 分組]
+            .flex-grow-1.mr-2._jp-search(style="width:15em")
+              +scope().input-group.has-icon(ld="search-widget")
+                input.form-control.form-control-sm(ld="keyword",t,t-placeholder="searchhint")
+                .input-group-append(ld="search")
+                  i.i-close.text-danger.input-group-icon.clickable(ld="clear")
+                  .btn.btn-sm.btn-outline-secondary.border: i.i-magnify(style="line-height:1em")
+          .mr-2.text-right.px-2.clickable.d-none(t,ld="show-budget sort",data-name="budget",style="width:50px") 預算
+          //-.mr-2.text-center.clickable(t,style="width:4em") 備註
+          .d-flex.align-items-center.flex-grow-1.justify-content-end
+            .text-center.flex-grow-1.d-flex.justify-content-center.align-items-center.g-2(style="width:5em")
+              div
+                div 票數
+                .text-sm.text-underline.clickable(ld="toggle-rule-description") 規則說明
+              //-div
+                .text-sm.d-flex.justify-content-between.g-1 #[span 待投] #[span(ld="available-tickets") 0]
+                .text-sm.d-flex.justify-content-between.g-1 #[span 已投] #[span(ld="used-tickets") 0]
+            .mr-2.text-center(style="width:4em") #[span(t) 評註]#[.text-danger.text-sm(t,ld="comment-required") 必填]
+
+        .prj.px-2.py-2.d-flex.align-items-center.border-bottom.border-light._flex-md-wrap(ld-each="project")
+          .d-flex.align-items-center.flex-grow-1._row_g1
+            .text-nowrap.text-center.mr-2._row_g1_d(style="width:5em"): .text-sm(ld="custom-id")
+            .mr-2.text-center.clickable._row_g1_d(ld="show-group",style="width:4em"): .text-sm(ld="group")
+            .flex-grow-1.text-truncate.mr-2.prj-name-field(style="width:15em")
+              .d-flex.justify-content-between
+                .text-underline.text-truncate.clickable(ld="name")
+                .text-right.clickable(ld="staff-note",style="width:2em"): i.i-discuss
+              .text-sm.text-muted(ld="teamname")
+          .mr-2.text-right.text-nowrap.d-none(ld="show-budget",style="width:75px")
+            div
+              span.text-sm.text-muted.mr-1 總數
+              b.text-sm.text-nowrap(ld="budget")
+            div
+              span.text-sm.text-muted.mr-1 補助
+              b.text-sm.text-nowrap(ld="subsidy")
+          .text-center.flex-grow-1.d-flex.align-items-center(style="width:5em")
+            .clickable.text-sm(ld="ticket-set",data-ticket="0",style="width:1em"): i.i-chevron-left
+            .clickable(ld="ticket-adjust",data-dir="-1",style="width:2em"): i.i-caret-left
+            .d-flex.rounded.overflow-hidden.border.shadow-sm.flex-grow-1.align-items-center.clickable.ticket-cell(
+            style="height:2em",ld="ticket-cell"): span(ld="ticket-cell-text")
+            .clickable(ld="ticket-adjust",data-dir="1",style="width:2em"): i.i-caret-right
+          .mr-2.vertical-center.text-center.clickable(ld="has-comment comment",style="width:4em"): i(ld="icon")
+
+    .w-100._jp
+      .d-flex.align-items-center.flex-wrap
+        //-.mr-4.text-sm
+          .text-muted._jp-title(t) 審查進度
+          .d-flex.align-items-center.my-1(style="line-height:1rem")
+            span.mr-2(ld-each="option"): .d-flex.align-items-center
+              span.rounded-sm.d-flex.align-items-center.justify-content-center(
+              ld="color",style="min-width:1em;height:1em;margin-right:.125em;text-shadow:0 1px 0 rgba(0,0,0,.2)")
+                div(ld="count",style="font-size:.8em;line-height:.8em;padding:1px .25em 0")
+              span(ld="name")
+
+        .flex-grow-1
+          .text-muted.text-sm.d-flex.g-4.align-items-center
+            .flex-grow-1
+              .d-flex.justify-content-between.g-2
+                .text-dark.d-flex.g-1
+                  span 目前已使用
+                  span.text-danger.font-weight-bold(ld="point",data-name="used")
+                  span 點 / 尚有上限
+                  span.font-weight-bold(ld="point",data-name="available")
+                  span 點可使用 / 總計
+                  span.font-weight-bold(ld="point",data-name="total")
+                  span 點
+                //-.text-danger.text-underline.clickable(ld="reset-point") 重設點數
+              .progress
+                .progress-bar.progress-bar-striped.progress-bar-animated(ld="progress-point")
+            div
+              .text-dark.d-flex.justify-content-between.g-2
+                span 得票組數:
+                div #[span.font-weight-bold.text-danger(ld="count",data-name="done")] / #[span.font-weight-bold(ld="count",data-name="total")]
+              .text-dark.clickable.d-flex.justify-content-between.g-2(ld="jump",data-name="comment")
+                span #[span(t) 待評註]: 
+                span.font-weight-bold(ld="count",data-name="pending-comment")
+
+        //-div: .btn.btn-outline-dark 提交審查結果
+
+  .project-viewer(ld="project-viewer",style="flex:1 1 50%")
+    .card.border.shadow.w-100.h-100(style="overflow:hidden;border-radius: .5em 0 0 .5em"): .card-body.p-0
+      iframe.border-0.w-100.h-100(ld="iframe")
+      .w-100.h-100.vertical-center.position-absolute.z-float.bg-light(
+      ld="iframe-placeholder",style="top:0;left:0")
+        .w-100.text-center.text-muted
+          .text-lg(t) 提案瀏覽區
+          div(t) 您可以點擊左方的提案名稱以在此瀏覽該提案內容
+      //-object.w-100.h-100(data="/assets/sample/simple-pdf.pdf",type="application/pdf")
+        embed(src="/assets/sample/simple-pdf.pdf",type="application/pdf")

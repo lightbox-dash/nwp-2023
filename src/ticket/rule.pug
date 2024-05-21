@@ -1,0 +1,82 @@
+//- module
++scope().ldcv.scroll(ld="ldcv ldcv-rule",data-name="rule")
+  .base.w-640.rwd: .inner.card.shadow-sm(style="overflow:visible"): .card-body
+    h3 規則設定
+    p 在此設定入選的規則，例如，入選票數門檻，或入選標記的選擇規則。
+    hr
+    .mb-5
+      .row
+        //-.col-md: .form-group
+          label 基本規則 #[span.text-muted.text-sm.ml-1 / 結果統計的方式]
+          select.form-control(ld="base-rule")
+            //- tickets
+            option(value="t") 依票數排序
+        .col-md: .form-group
+          label 票數配置 #[span.text-muted.text-sm.ml-1 / 點數消耗方式]
+          select.form-control(ld="pt-ratio")
+            option(value="linear") 一票一點
+            option(value="quad") 平方耗點
+          .text-sm.text-danger ． 預設為一票一點
+        .col-md: .form-group
+          label.d-flex.justify-content-between.align-items-end
+            span 評審配點
+          .d-flex.align-items-center.mb-1: .input-group
+            input.form-control(ld="point-quota")
+            .input-group-append: span.input-group-text 點
+          .text-sm.text-danger ． 為設定 0 或未填,則採用 1 點
+      .row
+        .col-md: .form-group
+          label.d-flex.justify-content-between.align-items-end
+            span 票數上限
+          .d-flex.align-items-center.mb-1: .input-group
+            input.form-control(ld="max-ticket")
+            .input-group-append: span.input-group-text 票
+          .text-sm.text-danger ． 預設為 1 票
+        .col-md: .form-group
+          label.d-flex.justify-content-between.align-items-end
+            span 入選票數門檻
+            span.text-sm.text-muted(style="line-height:1.66em",
+            ld="show-threshold-ticket") 實際採用值: #[span(ld="threshold-ticket") 0]票
+          .d-flex.align-items-center
+            .input-group
+              .text-nowrap.input-group-prepend: span.input-group-text 大於
+              input.form-control(ld="threshold-ticket")
+              .input-group-append: span.input-group-text 票
+      .row
+        .col-md
+          .form-group
+            label 組數上限
+            .d-flex.align-items-center.mb-1
+              .input-group
+                .text-nowrap.input-group-prepend: span.input-group-text 最多
+                input.form-control(ld="picked-count")
+                .input-group-append: span.input-group-text 組
+            .text-sm.text-danger ． 0 表示無上限
+
+      br
+      label 評審相關
+      .border.rounded.p-3.d-flex.flex-column.g-3
+        .d-flex.align-items-center.flex-wrap
+          .flex-grow-1
+            label.mb-0
+              | 評審權重 
+              span.text-sm.text-muted / 目前 
+              span.text-sm.text-danger.font-weight-bold(ld="weighted-value") 未啟用
+            .text-muted.text-sm 以加權方式計算評審票數
+          .mx-4
+            .btn.btn-sm.btn-block.btn-outline-secondary.text-nowrap(ld="toggle-weighting") 權重設定
+          .d-flex.align-items-center
+            .switch.switch-lg(ld="switch",data-name="weighted")
+        .border-top
+        .d-flex.align-items-center.flex-wrap
+          .flex-grow-1
+            label.mb-0
+              | 評審評註選填 
+              span.text-sm.text-muted / 目前為 
+              span.text-sm.text-danger.font-weight-bold(ld="comment-optional-value") 必填
+            .text-muted.text-sm 預設「必填」，開啟則改為「選填」
+          .d-flex.align-items-center.text-nowrap
+            .switch.switch-lg(ld="switch",data-name="comment-optional")
+
+
+    .text-right: .btn.btn-primary(data-ldcv-set="") 完成

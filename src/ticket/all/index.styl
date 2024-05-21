@@ -1,0 +1,47 @@
+.final-result
+  background: #f1f2f3
+  color: rgba(112,112,112,0)
+.final-result.accept
+  background: #28a745
+  color: #fff
+.final-result.overflow.accept
+  border-left: 10px solid #f90
+
+.prj
+  width: fit-content
+  min-width: 100%
+.prj.lockdown
+  background: #ff9
+.prj.highlight
+  background: #9ff
+.prj.disabled
+  filter: saturate(0)
+  background: #edeeef
+  color: #777879
+  .clickable
+    cursor: not-allowed!important
+  &.hidden
+    display: none!important
+
+.dropdown-item { display: flex; justify-content: space-between }
+.dropdown-item[ld="all-sort-method"] i { opacity: 0}
+.dropdown-item.active[ld="all-sort-method"] i { opacity: 1}
+
+.judge-cells
+  gap: 1px
+.sticky .judge-cells
+  & > div:nth-child(2n) { border-bottom: 3px solid rgba(0,0,0,.05) }
+  & > div:nth-child(2n + 1) {  border-bottom: 3px solid rgba(0,0,0,.25) }
+.prj .judge-cells
+  & > div
+    border-radius: .1em
+    display: flex
+    height: 100%
+    align-items: center
+    justify-content: center
+  & > div:nth-child(2n) { background: rgba(0,0,0,.01) }
+  & > div:nth-child(2n + 1) { background: rgba(0,0,0,.05) }
+  color: #999
+  .highlight
+    color: #000
+    font-weight: 700

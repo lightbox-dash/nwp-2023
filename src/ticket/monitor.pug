@@ -1,0 +1,31 @@
+//- module
++scope().ldcv.scroll.autogap(ld="ldcv ldcv-monitor",data-name="monitor"): .base.w-640.rwd: .inner
+  style(type="text/css"): :stylus
+    .legend
+      line-height: 1em
+      display: flex
+      align-items: center
+      margin-left: 1em
+      strong
+        font-weight: bold
+    .square
+      width: 1em
+      height: .9em 
+      border-radius: .25em
+      margin-right: .25em
+      display: inline-block
+  script(type="@plotdb/block"): include:lsc monitor.ls
+  .text-center.mb-4: h3.mb-0 評選進度
+  .mb-4: .mb-4.clickable(ld-each="judge")
+    .d-flex.justify-content-between
+      .d-flex.g-2.align-items-end #[.text-sm.text-muted.mr-1 委員]#[span(ld="name")]
+      .d-flex.g-2
+        .legend.text-sm #[.square.bg-primary]已用點數: #[strong(ld="used-point") 0]/#[strong(ld="total-point") 0]
+        .legend.text-sm #[.square.bg-success]已評論: #[strong(ld="comment") 0]/#[strong(ld="count") 0]
+    .d-flex.g-2
+      .progress.flex-grow-1
+        .progress-bar.bg-primary(ld="progress-point",style="width:0%;transition:width .35s ease-in-out")
+      .progress.flex-grow-1
+        .progress-bar.bg-success(ld="progress-comment",style="width:0%;transition:width .35s ease-in-out")
+  .text-right: .btn.btn-primary(data-ldcv-set="") 關閉
+

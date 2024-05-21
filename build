@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 bin=./node_modules/.bin
 rm -rf dist
-mkdir -p dist/qualification
+mkdir -p dist/qualification dist/ticket
 mkdir -p dist/apply/img/
 echo "build lib script ..."
 $bin/lsc -cbp --no-header src/apply/lib.ls > dist/apply/lib.js
@@ -11,6 +11,10 @@ echo "index.pug ..."
 $bin/srcbuild-pug src/apply/index.pug > dist/apply/index.html
 echo "qualification/user.pug ..."
 ./node_modules/.bin/srcbuild-pug src/qualification/user.pug > dist/qualification/user.html
+echo "ticket/user.pug ..."
+./node_modules/.bin/srcbuild-pug src/ticket/user.pug > dist/ticket/user.html
+echo "ticket/all.pug ..."
+./node_modules/.bin/srcbuild-pug src/ticket/all.pug > dist/ticket/all.html
 
 # building customized @makeform/image
 echo "widgets/image/index.pug ..."
