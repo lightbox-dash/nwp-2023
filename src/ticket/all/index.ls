@@ -35,6 +35,7 @@ module.exports =
   render: ->
     @statistic!
     @view.render!
+    for k,v of (@renders or {}) => v!
     if @active["custom-id"] =>
       p = @submod.project.utils.filtered!filter((p) ~> @active["custom-id"] == @lib.idx prj: p).0
       if p => @pn.get(p).scrollIntoView behavior: \smooth, block: \center
@@ -211,19 +212,26 @@ module.exports =
           "toggle-rule": ~> @ldcv.rule.toggle!
           "toggle-monitor": ~> @ldcv.monitor.toggle!
           "toggle-detail": ~>
-            @tool.detail.view({
+            payload = {
               custom-fields: (o = {}) ~>
                 if !o.prj =>
-                  return [{
-                    value: t("結果"), key: "_結果"
-                  }] #++ @options.list!map (d) -> {value: t("_local:#{d.name}"), key: d.key}
+                  return [
+                  * value: t("總分"), key: "_總分"
+                  * value: t("結果"), key: "_結果"
+                  ] #++ @options.list!map (d) -> {value: t("_local:#{d.name}"), key: d.key}
                 p = @pm.get(o.prj)
                 result = @result-mark {prj: o.prj}
-                return [{
-                  value: result.mark, key: "_結果"
-                }] #++ @options.list!map (d) -> {value: (p.count or {})[d.key] or 0, key: d.key}
+                return [
+                * value: p.ticket, key: "_總分"
+                * value: result.mark, key: "_結果"
+                ] #++ @options.list!map (d) -> {value: (p.count or {})[d.key] or 0, key: d.key}
               rank: ({prj}) ~> @pm.get(prj).rank
               score: ({judge, prj}) ~>
                 return (@data.user{}[judge.key].{}prj[prj.key] or {}).v or 0
-            })
+            }
+            @tool.detail.view(payload)
+            @ldcvmgr.getcover {name: '@grantdash/judge', path: 'common/detail.html'}
+              .then (cover) ~>
+                if @{}renders["detail"] => return
+                @renders["detail"] = ~> cover.fire \data, ({} <<< @{brd,grp,prjs,judge,data,lib} <<< payload)
           "download-csv": ~> @submod.download.obj.run.apply @, [{ctx,t}]

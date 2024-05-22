@@ -1,0 +1,134 @@
+.ldcv.scroll: .base.w-1024: .inner.card.shadow-sm.position-relative
+  script(type="@plotdb/block"): include:lsc detail.ls
+  style(type="text/css"): include:stylus detail.styl
+  .d-none(ld="ext-style"): include:stylus detail.styl
+  .d-flex.justify-content-between.p-4
+    .btn.btn-outline-secondary(t,ld="print") 列印此表
+    .btn-group
+      .btn.btn-outline-secondary(t,ld="pivot",data-name="judge") 評審為中心
+      .btn.btn-outline-secondary(t,ld="pivot",data-name="prj") 案件為中心
+      .btn.btn-outline-secondary(t,ld="pivot",data-name="overall") 總表
+    .btn.btn-outline-secondary(t,ld="change-layout") 更換排版方式
+
+  mixin pagebreak
+    div(style="page-break-after:always")
+    //-
+      - `break-after` is not supported properly. use `page-break-after` instead.
+      - additional my-4 with space for double side printing to work
+      - while we use `page-break-after: left` but all browsers treat it as `always`,
+        thus there may still be a blank page behind the cover page.
+    .my-1 &nbsp;
+    div(style="page-break-after:left")
+
+  div(ld="root"): .p-4
+    .text-muted.text-center.p-5(t,ld="no-judge") 尚未設定任何評審
+    div(ld="overall-base pivot-base",data-name="overall",ld-scope="overall-base")
+      table.table.table-bordered
+        tr
+          th.c-vhc.c-bb(t,style="width:4em") 序位
+          th.c-vhc.c-bb(t,style="width:7em") 編號
+          th.c-vhc.c-bb #[span(t) 提案名稱] / #[span(t) 單位名]
+          th.c-vhc.c-bb(ld-each="custom-fields",t)
+        tr(ld-each="prj")
+          td.c-vhc(ld="rank")
+          td.c-vhc(ld="custom-id")
+          td
+            div(ld="name")
+            .text-sm.text-muted(ld="teamname")
+          td.c-vhc(ld-each="custom-fields")
+
+    div(ld="prj-base pivot-base",data-name="prj",ld-scope="prj-base")
+      div(ld-each="prj")
+        .text-center.my-2
+          .mb-1
+            h4.mb-0(ld="name")
+            div(ld="group-name")
+          div
+            span(ld="prj-name")
+            .text-sm.text-muted(ld="teamname")
+
+        table.table.table-bordered.d-none(ld="layout", data-name="nest", style="outline:1px solid #000")
+          tr
+            th.c-hc.c-bb(t,style="width:7em") 委員
+            th.c-hc.c-bb(t,style="width:9em") 給分
+            th.c-bb(t) 評註
+          tr.border-bottom.border-dark(ld-each="judge")
+            td.c-vhc.c-bb(ld="judge-name",style="font-weight:300")
+            th.c-vhc.c-bb(style="width:7em"): div(ld="score")
+            td.p-0.c-bb
+              .p-2
+                .mb-2
+                  .text-muted.text-sm(ld="has-content",data-type="comment",data-value="no") #[span(t="評註")]: n/a
+                  div(ld="has-content",data-type="comment",data-value="yes")
+                    .text-muted.text-sm #[span(t="評註")]:
+                    div(ld="comment")
+                .mb-2(ld="advice-on")
+                  .text-muted.text-sm(ld="has-content",data-type="advice",data-value="no") #[span(t="建議")]: n/a
+                  div(ld="has-content",data-type="advice",data-value="yes")
+                    .text-muted.text-sm #[span(t="建議")]:
+                    div(ld="advice")
+
+        table.table.table-bordered.d-none(ld="layout",data-name="list")
+          tr
+            th.c-hc(t,style="width:8em") 委員
+            th.c-hc(t,style="width:7em") 給分
+            th(t,style="min-width:10em") 評註
+            th(t,ld="advice",style="min-width:10em") 建議
+          tr(ld-each="judge")
+            td.c-vhc(ld="judge-name",style="font-weight:300")
+            td.c-vhc(ld="score",style="font-weight:300")
+            td.c-vc(ld="comment",style="font-weight:300;word-break:break-all")
+            td.c-vc(ld="advice",style="font-weight:300;word-break:break-all")
+
+        +pagebreak
+
+
+    div(ld="judge-base pivot-base",data-name="judge",ld-scope="judge-base")
+      div(ld-each="judge")
+        .text-center.my-2
+          .mb-1
+            h4.mb-0(ld="name")
+            div(ld="group-name")
+          div #[span(ld="judge-name")] #[span(t) 委員]
+        table.table.table-bordered.d-none(ld="layout", data-name="nest", style="outline:1px solid #000")
+          tr
+            th.c-hc.c-bb(t,style="width:7em") 編號
+            th.c-bb.c-bb(t) 提案名稱
+            th.c-hc.c-bb(t,style="width:9em") 給分
+          tr.border-bottom.border-dark(ld-each="prj")
+            td.c-vhc.c-bb(ld="custom-id",style="font-weight:300")
+            td.p-0.c-bb(colspan="2")
+              .d-flex.w-100.border-bottom
+                .flex-grow-1.p-2
+                  div: b(ld="name")
+                  .text-sm(ld="teamname",style="font-weight:300")
+                .p-2.border-left.d-flex.align-items-center.justify-content-center(
+                ld="score", style="width:9em;flex:0 0 auto")
+              .p-2
+                .mb-2
+                  .text-muted.text-sm(ld="has-content",data-type="comment",data-value="no") #[span(t="評註")]: n/a
+                  div(ld="has-content",data-type="comment",data-value="yes")
+                    .text-muted.text-sm #[span(t="評註")]:
+                    div(ld="comment")
+                .mb-2(ld="advice-on")
+                  .text-muted.text-sm(ld="has-content",data-type="advice",data-value="no") #[span(t="建議")]: n/a
+                  div(ld="has-content",data-type="advice",data-value="yes")
+                    .text-muted.text-sm #[span(t="建議")]:
+                    div(ld="advice")
+
+        table.table.table-bordered.d-none(ld="layout",data-name="list")
+          tr
+            th(t,style="width:8em") 編號
+            th(t,style="width:20em") 提案名稱
+            th(t,style="width:7em") 給分
+            th(t,style="min-width:10em") 評註
+            th(t,ld="advice",style="min-width:10em") 建議
+          tr(ld-each="prj")
+            td.c-vhc(ld="custom-id",style="font-weight:300")
+            td
+              div: b(ld="name")
+              .text-sm(ld="teamname",style="font-weight:300")
+            td.c-vhc(ld="score",style="font-weight:300")
+            td.c-vc(ld="comment",style="font-weight:300;word-break:break-all")
+            td.c-vc(ld="advice",style="font-weight:300;word-break:break-all")
+        +pagebreak
