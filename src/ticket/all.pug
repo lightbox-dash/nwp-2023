@@ -26,16 +26,16 @@ div: .d-flex.flex-grow-1.w-100.h-100(plug="content")
                 i.i-close.text-danger.input-group-icon.clickable(ld="clear")
                 .btn.btn-sm.btn-outline-secondary.border: i.i-magnify(style="line-height:1em")
           .py-1.text-right.px-2.clickable.d-none(t,ld="show-budget sort",data-name="budget",style="width:50px") 預算
-          .py-1.text-center(style="width:3em"): span.text-nowrap(t) 迴避
+          .py-1.text-center(style="width:5em") 總票數
+
           .py-1.text-center(data-name="shortlist",style="width:3em"): span.text-nowrap(t) 入選標記
           .text-center.d-flex.flex-column(style="flex:0 0 auto;align-self:stretch")
-            .text-sm.pt-2 給票數
             .d-flex.judge-cells.flex-grow-1
               .d-flex.align-items-center(ld-each="judge",style="width:3em")
                 .w-100.text-truncate(ld="name",style="font-size:.85em")
-          .py-1.text-center(style="width:5em") 得票數
           .py-1.text-center.clickable(style="width:2.8em") #[span(t) 會前加註]
           .py-1.text-center.clickable(style="width:2.8em") #[span(t) 會中加註]
+          .py-1.text-center(style="width:3em"): span.text-nowrap(t) 迴避
 
         .prj(ld-each="project")
           .px-2.py-1.d-flex.align-items-center.border-bottom.border-light.g-2
@@ -48,16 +48,16 @@ div: .d-flex.flex-grow-1.w-100.h-100(plug="content")
             .flex-grow-1(style="width:15em")
               .text-underline.clickable.text-dark(ld="name",style="word-break:break-all")
               .text-sm.text-muted(ld="teamname")
+            .text-center(style="width:5em",ld="ticket") 0
 
-            .clickable.text-center.dropdown-toggle(data-toggle="dropdown",style="width:3em",ld="avoid") 0
             .rounded.text-center.clickable.py-1.final-result.has-tips.d-flex.align-items-center.justify-content-center(ld="result",style="width:3em;align-self:stretch;")
               i(ld="icon")
               .hover-tip.tip-sm.tip-fit(t="超額入選")
             .d-flex.text-center.judge-cells(style="flex:0 0 auto;align-self:stretch")
               div(ld-each="judge",style="width:3em"): div(ld="ticket") 0
-            .text-center(style="width:5em",ld="ticket") 0
             .text-center.clickable(ld="staff-note",data-type="prenote",style="width:2.8em"): i.i-comment(ld="icon")
             .text-center.clickable(ld="staff-note",data-type="note",style="width:2.8em"): i.i-comment(ld="icon")
+            .clickable.text-center.dropdown-toggle(data-toggle="dropdown",style="width:3em",ld="avoid") 0
 
     .py-2.px-3.d-flex.text-nowrap.sticky.bg-white(
     style="bottom:0;left:0;right:0;box-shadow:0 -.12rem .25rem rgba(0,0,0,.07);width:fit-content;min-width:100%")
