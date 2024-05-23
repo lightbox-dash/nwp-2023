@@ -17,6 +17,7 @@ div: .d-flex.flex-grow-1.w-100.h-100(plug="content")
         .px-2.d-flex.align-items-center.bg-light.sticky.shadow-sm.g-2.z-float(
         style="top:0;min-width:100%;width:fit-content;flex-wrap:nowrap;border-top:1px solid #eee;border-bottom:1px solid var(--secondary)")
           .py-1.clickable.text-center(t,style="width:60px") 序位
+          .py-1.clickable.text-center(t,style="width:60px") No.
           .py-1.clickable.text-center.d-none(style="width:3.5em",ld="show-group") #[span(t) 分組]
           .py-1.clickable.text-center(t,ld="sort",data-name="sid",style="width:80px") 編號
           .py-1.flex-grow-1.clickable(ld="sort",data-name="name",style="width:15em")
@@ -43,12 +44,14 @@ div: .d-flex.flex-grow-1.w-100.h-100(plug="content")
             style="width:60px",ld="rank")
               span(ld="number")
               span.text-sm.text-muted(ld="postfix")
+            .text-center.align-items-end.justify-content-center.text-nowrap.pl-1.clickable(
+            style="width:60px",ld="idx")
             .text-center.clickable.d-none(ld="show-group",style="width:3.5em"): .text-sm(ld="group")
             .text-center.clickable.text-sm(style="width:80px",ld="custom-id")
             .flex-grow-1(style="width:15em")
               .text-underline.clickable.text-dark(ld="name",style="word-break:break-all")
               .text-sm.text-muted(ld="teamname")
-            .text-center(style="width:5em",ld="ticket") 0
+            .text-center.font-weight-bold(style="width:5em",ld="ticket") 0
 
             .rounded.text-center.clickable.py-1.final-result.has-tips.d-flex.align-items-center.justify-content-center(ld="result",style="width:3em;align-self:stretch;")
               i(ld="icon")

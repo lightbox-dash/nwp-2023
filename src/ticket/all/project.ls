@@ -52,6 +52,7 @@ submod.project = ({ctx, t}) ->
         "custom-id": ({node, ctx}) ~>
           node.classList.toggle \font-weight-bold, @active["custom-id"] == @lib.idx(prj: ctx)
           node.innerText = @lib.idx(prj: ctx)
+        idx: ({node, ctx}) ~> node.innerText = (@pm.get(ctx).order + 1)
         rank:
           handler: "@": ({node, ctxs}) ~>
             node.classList.toggle \font-weight-bold, @active.order == @pm.get(ctxs.0).order
