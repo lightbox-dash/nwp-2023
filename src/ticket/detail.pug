@@ -50,7 +50,7 @@
         table.table.table-bordered.d-none(ld="layout", data-name="nest", style="outline:1px solid #000")
           tr
             th.c-hc.c-bb(t,style="width:7em") 委員
-            th.c-hc.c-bb(t,style="width:9em") 給分
+            th.c-hc.c-bb(t,style="width:9em") 票數
             th.c-bb(t) 評註
           tr.border-bottom.border-dark(ld-each="judge")
             td.c-vhc.c-bb(ld="judge-name",style="font-weight:300")
@@ -71,7 +71,7 @@
         table.table.table-bordered.d-none(ld="layout",data-name="list")
           tr
             th.c-hc(t,style="width:8em") 委員
-            th.c-hc(t,style="width:7em") 給分
+            th.c-hc(t,style="width:7em") 票數
             th(t,style="min-width:10em") 評註
             th(t,ld="advice",style="min-width:10em") 建議
           tr(ld-each="judge")
@@ -94,7 +94,7 @@
           tr
             th.c-hc.c-bb(t,style="width:7em") 編號
             th.c-bb.c-bb(t) 提案名稱
-            th.c-hc.c-bb(t,style="width:9em") 給分
+            th.c-hc.c-bb(t,style="width:9em") 票數
           tr.border-bottom.border-dark(ld-each="prj")
             td.c-vhc.c-bb(ld="custom-id",style="font-weight:300")
             td.p-0.c-bb(colspan="2")
@@ -120,7 +120,7 @@
           tr
             th(t,style="width:8em") 編號
             th(t,style="width:20em") 提案名稱
-            th(t,style="width:7em") 給分
+            th(t,style="width:7em") 票數
             th(t,style="min-width:10em") 評註
             th(t,ld="advice",style="min-width:10em") 建議
           tr(ld-each="prj")

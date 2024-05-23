@@ -21,6 +21,7 @@ module.exports =
         "未有共識": "No Consensus"
         "入選": "Selected"
         "結果": "Result"
+        "總票數": "Ticket"
       "zh-TW":
         "設定項目": "設定項目"
         "評分細節": "評分細節"
@@ -32,6 +33,7 @@ module.exports =
         "未有共識": "未有共識"
         "入選": "入選"
         "結果": "結果"
+        "總票數": "總票數"
   render: ->
     @statistic!
     @view.render!
@@ -216,21 +218,30 @@ module.exports =
               custom-fields: (o = {}) ~>
                 if !o.prj =>
                   return [
-                  * value: t("總分"), key: "_總分"
+                  * value: t("總票數"), key: "_總票數"
                   * value: t("結果"), key: "_結果"
                   ] #++ @options.list!map (d) -> {value: t("_local:#{d.name}"), key: d.key}
                 p = @pm.get(o.prj)
                 result = @result-mark {prj: o.prj}
                 return [
-                * value: p.ticket, key: "_總分"
+                * value: p.ticket, key: "_總票數"
                 * value: result.mark, key: "_結果"
                 ] #++ @options.list!map (d) -> {value: (p.count or {})[d.key] or 0, key: d.key}
               rank: ({prj}) ~> @pm.get(prj).rank
               score: ({judge, prj}) ~>
                 return (@data.user{}[judge.key].{}prj[prj.key] or {}).v or 0
             }
-            @tool.detail.view(payload)
-            @ldcvmgr.getcover {name: '@grantdash/judge', path: 'common/detail.html'}
+            # original bid
+            #bid = {name: '@grantdash/judge', path: 'common/detail.html'},
+            # customized bid
+            bid = {ns: \template/nwp-2024, name: \block, path: 'ticket/detail.html'}
+            _ = ({custom-fields, score, rank}) ~>
+              @ldcvmgr.get(
+                bid,
+                ({} <<< @{brd,grp,prjs,judge,data,lib} <<< {score, custom-fields, rank})
+              )
+            _(payload)
+            @ldcvmgr.getcover bid
               .then (cover) ~>
                 if @{}renders["detail"] => return
                 @renders["detail"] = ~> cover.fire \data, ({} <<< @{brd,grp,prjs,judge,data,lib} <<< payload)
