@@ -128,7 +128,7 @@ module.exports =
       vm = @vote-method!
       stat = @pm.get(prj)
       picked-count = ((@data.cfg or {}).rule or {})["picked-count"]
-      is-overflow = !!(picked-count and (stat.order + 1) > picked-count)
+      is-overflow = !!(picked-count and (stat.order + 1) >= picked-count)
       # only vm == \t support
       ret = if vm == \t => {overflow: is-overflow, picked: stat.picked}
       mark = if vm == \t => if ret.picked => (if ret.overflow => '超額入選' else '入選') else ''
