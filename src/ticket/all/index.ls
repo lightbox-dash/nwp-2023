@@ -72,11 +72,16 @@ module.exports =
       # lower prj key = higher order
       return a.prj.key - b.prj.key
     [rank,ticket] = [1, ((stats.0 or {}).stat or {}).ticket or 0]
+    count-til-rank = {}
     for i from 0 til stats.length =>
       # same rank for prjs with same rate ( while they have different orders )
       if stats[i].stat.ticket != ticket => [rank, ticket] = [i + 1, stats[i].stat.ticket]
       stats[i].stat.rank = rank # rank based on rule
       stats[i].stat.order = i # actual order in list
+      count-til-rank[rank] = i + 1
+    for i from 0 til stats.length =>
+      stats[i].stat.count-til-rank = count-til-rank[stats[i].stat.rank]
+
     sort-method = @tool["all-sort"].get-method!
     group-sort = (a,b) ~>
       gr = ((@data.cfg or {}).group or {})
@@ -130,7 +135,7 @@ module.exports =
       vm = @vote-method!
       stat = @pm.get(prj)
       picked-count = ((@data.cfg or {}).rule or {})["picked-count"]
-      is-overflow = !!(picked-count and (stat.order + 1) >= picked-count)
+      is-overflow = !!(picked-count and stat.count-til-rank > picked-count)
       # only vm == \t support
       ret = if vm == \t => {overflow: is-overflow, picked: stat.picked}
       mark = if vm == \t => if ret.picked => (if ret.overflow => '超額入選' else '入選') else ''
