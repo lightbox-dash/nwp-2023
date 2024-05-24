@@ -17,7 +17,7 @@ module.exports =
         "簡報順序": "Project Order"
         "選項設定": "Options Setup"
         "結果統計": "Statistics"
-        "超額入選": "Excess Selected"
+        "同分待議": "Tie to Break"
         "未有共識": "No Consensus"
         "入選": "Selected"
         "結果": "Result"
@@ -29,7 +29,7 @@ module.exports =
         "簡報順序": "簡報順序"
         "選項設定": "選項設定"
         "結果統計": "結果統計"
-        "超額入選": "超額入選"
+        "同分待議": "同分待議"
         "未有共識": "未有共識"
         "入選": "入選"
         "結果": "結果"
@@ -138,7 +138,7 @@ module.exports =
       is-overflow = !!(picked-count and stat.count-til-rank > picked-count)
       # only vm == \t support
       ret = if vm == \t => {overflow: is-overflow, picked: stat.picked}
-      mark = if vm == \t => if ret.picked => (if ret.overflow => '超額入選' else '入選') else ''
+      mark = if vm == \t => if ret.picked => (if ret.overflow => '同分待議' else '入選') else ''
       return ret <<< {mark}
 
     @vote-method = -> return ((@data.cfg or {}).rule or {}).base or \t
