@@ -192,9 +192,10 @@ module.exports =
             evt.stopPropagation!
             @wake-lock.toggle!then ~> views.0.render \wake-lock-state
           publish: ~>
+            badges = ((@brd.detail.prj or {}).config or {}).badges or []
             core.ldcvmgr.get(
               {name: '@grantdash/judge', path: 'common/publishing.html'}
-              {badge: \shortlisted}
+              {badge: \shortlisted, badges}
             )
               .then (badge-name) ~>
                 if !badge-name => return
