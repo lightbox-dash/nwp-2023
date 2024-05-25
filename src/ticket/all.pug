@@ -33,7 +33,7 @@ div: .d-flex.flex-grow-1.w-100.h-100(plug="content")
           .text-center.d-flex.flex-column(style="flex:0 0 auto;align-self:stretch")
             .d-flex.judge-cells.flex-grow-1
               .d-flex.align-items-center(ld-each="judge",style="width:3em")
-                .w-100.text-truncate(ld="name",style="font-size:.85em")
+                .w-100(ld="name",style="font-size:.85em;line-height:1em")
           .py-1.text-center.clickable(style="width:2.8em") #[span(t) 會前加註]
           .py-1.text-center.clickable(style="width:2.8em") #[span(t) 會中加註]
           .py-1.text-center(style="width:3em"): span.text-nowrap(t) 迴避
